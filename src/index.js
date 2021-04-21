@@ -5,15 +5,17 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import LoginPage from '../src/loginPage/loginPage.jsx'
-import { history } from '../src/loginPage/history.js';
+import LoginContainer from './containers/loginContainer';
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import rootReducer from './services/reducers/index'
+const store = createStore(rootReducer)
 
+// console.warn("store data"+ store)
 ReactDOM.render(
-     <Router history={history}>
-                            
-        <Route path="/login" component={LoginPage} />
-                            
-     </Router>
+    <Provider store={store}>
+      <App />
+    </Provider>
   ,
   document.getElementById('root')
 );
